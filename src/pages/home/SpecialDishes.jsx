@@ -93,7 +93,7 @@ const SpecialDishes = () => {
       </div>
 
       {/* arrow btn */}
-      <div className="md:absolute right-3 top-8 mb-10 md:mr-24">
+      <div className="flex justify-center md:absolute right-3 top-8 mb-10 md:mr-24">
         <button
           onClick={() => slider?.current?.slickPrev()}
           className="btn p-2 rounded-full ml-5"
