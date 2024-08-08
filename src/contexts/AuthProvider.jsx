@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
 
   //logout
   const logOut = () => {
-    signOut(auth);
+    return signOut(auth);
   };
 
   //update profile
@@ -50,17 +50,11 @@ const AuthProvider = ({ children }) => {
   //check signed-in user
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-        setLoading(false);
-      } else {
-        // User is signed out
-        // ...
-      }
+      setUser(currentUser);
+      setLoading(false);
     });
-    return () => {
-      return unsubscribe();
-    };
+
+    return () => unsubscribe();
   }, []);
 
   const authInfo = {
