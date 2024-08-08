@@ -6,7 +6,7 @@ import Cards from "../../components/Cards";
 import {} from "react-icons/fa6";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
-const simpleNextArrow = (props) => {
+const SimpleNextArrow = (props) => {
   const { className, style, onClick } = props;
   return (
     <div
@@ -19,7 +19,7 @@ const simpleNextArrow = (props) => {
   );
 };
 
-const simplePrevArrow = (props) => {
+const SimplePrevArrow = (props) => {
   const { className, style, onClick } = props;
   return (
     <div
@@ -81,8 +81,8 @@ const SpecialDishes = () => {
       },
     ],
 
-    nextArrow: <simpleNextArrow />,
-    prevArrw: <simplePrevArrow />,
+    nextArrow: <SimpleNextArrow />,
+    prevArrw: <SimplePrevArrow />,
   };
 
   return (
