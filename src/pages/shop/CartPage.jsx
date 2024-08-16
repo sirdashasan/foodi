@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import useCart from "../../hooks/useCart";
 import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const CartPage = () => {
-  const [cart, refatch] = useCart();
+  const [cart, refetch] = useCart();
+  const { user } = useContext(AuthContext);
 
   // handledelete btn
   const handleDelete = (item) => {
@@ -18,11 +20,20 @@ const CartPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
+        fetch(`http://localhost:6001/carts/${item._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
       }
     });
   };
@@ -85,6 +96,22 @@ const CartPage = () => {
               ))}
             </tbody>
           </table>
+        </div>
+      </div>
+
+      {/* customer details */}
+      <div className="my-12 flex flex-col md:flex-row justify-between items-start">
+        <div className="md:w-1/2 space-y-3">
+          <h3 className="font-medium">Customer Details</h3>
+          <p>Name: {user.displayName}</p>
+          <p>Email: {user.email}</p>
+          <p>User_id: {user.uid}</p>
+        </div>
+        <div className="md:w-1/2 space-y-3">
+          <h3 className="font-medium">Shopping Details</h3>
+          <p>Total Items: {cart.length}</p>
+          <p>Total Price: $0.00</p>
+          <button className="btn bg-green text-white">Proceed Checkout</button>
         </div>
       </div>
     </div>
