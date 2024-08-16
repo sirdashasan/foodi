@@ -8,7 +8,7 @@ const CartPage = () => {
   const [cart, refetch] = useCart();
   const { user } = useContext(AuthContext);
 
-  // handledelete btn
+  // handledelete button
   const handleDelete = (item) => {
     Swal.fire({
       title: "Are you sure?",
