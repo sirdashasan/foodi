@@ -10,7 +10,8 @@ const Menu = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
 
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl =
+    import.meta.env.VITE_API_URL || "https://foodi-server.vercel.app";
 
   //loading data
   useEffect(() => {
