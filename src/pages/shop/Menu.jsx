@@ -10,15 +10,15 @@ const Menu = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
 
-  const apiUrl = import.meta.env.VITE_API_URL;
-
   //loading data
   useEffect(() => {
     //fetch data from the backend
     const fetchData = async () => {
       try {
         //const response = await fetch("/menu.json");
-        const response = await fetch(`${apiUrl}/menu`);
+        const response = await fetch(
+          "https://foodi-server-lime.vercel.app/menu"
+        );
         //const response = await fetch("http://localhost:6001/menu");
         const data = await response.json();
         //console.log(data);
