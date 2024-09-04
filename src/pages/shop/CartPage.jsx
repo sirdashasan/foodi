@@ -82,7 +82,7 @@ const CartPage = () => {
 
   const orderTotal = cartSubTotal;
 
-  // handledelete button
+  // handledelete btn
   const handleDelete = (item) => {
     Swal.fire({
       title: "Are you sure?",
