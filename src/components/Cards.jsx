@@ -25,7 +25,8 @@ const Cards = ({ item }) => {
         email: user.email,
       };
       //console.log(cartItem);
-      fetch("http://localhost:6001/carts", {
+      //fetch("http://localhost:6001/carts",
+      fetch("https://foodi-server-lime.vercel.app/carts", {
         method: "POST",
         headers: {
           "content-type": "application/json",

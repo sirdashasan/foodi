@@ -17,7 +17,8 @@ const CartPage = () => {
   // handleIncrease function
   const handleIncrease = (item) => {
     //console.log(item._id);
-    fetch(`http://localhost:6001/carts/${item._id}`, {
+    //fetch(`http://localhost:6001/carts/${item._id}`,
+    fetch(`https://foodi-server-lime.vercel.app/carts/${item._id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -45,7 +46,8 @@ const CartPage = () => {
   // handleDecrease function
   const handleDecrease = (item) => {
     if (item.quantity > 1) {
-      fetch(`http://localhost:6001/carts/${item._id}`, {
+      //fetch(`http://localhost:6001/carts/${item._id}`,
+      fetch(`https://foodi-server-lime.vercel.app/carts/${item._id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
