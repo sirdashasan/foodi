@@ -3,13 +3,42 @@ import { Link, Outlet } from "react-router-dom";
 import { MdDashboard, MdDashboardCustomize } from "react-icons/md";
 import {
   FaEdit,
+  FaLocationArrow,
   FaPlusCircle,
+  FaQuestionCircle,
   FaRegUser,
   FaShoppingBag,
   FaUser,
 } from "react-icons/fa";
+import { FaCartShopping } from "react-icons/fa6";
 
 import logo from "/logo.png";
+
+const sharedLinks = (
+  <>
+    <li className="mt-3">
+      <Link to="/">
+        <MdDashboard />
+        Home
+      </Link>
+    </li>
+    <li>
+      <Link to="/menu">
+        <FaCartShopping /> Menu
+      </Link>
+    </li>
+    <li>
+      <Link to="/menu">
+        <FaLocationArrow /> Orders Tracking
+      </Link>
+    </li>
+    <li>
+      <Link to="/menu">
+        <FaQuestionCircle /> Customer Support
+      </Link>
+    </li>
+  </>
+);
 
 const DashboardLayout = () => {
   return (
@@ -73,12 +102,17 @@ const DashboardLayout = () => {
                 Manage Items
               </Link>
             </li>
-            <li>
+            <li className="mb-3">
               <Link to="/dashboard/users">
                 <FaUser />
                 All Users
               </Link>
             </li>
+
+            <hr />
+
+            {/* shared nav links */}
+            {sharedLinks}
           </ul>
         </div>
       </div>
