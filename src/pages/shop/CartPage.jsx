@@ -17,14 +17,17 @@ const CartPage = () => {
   // handleIncrease function
   const handleIncrease = (item) => {
     //console.log(item._id);
-    //fetch(`http://localhost:6001/carts/${item._id}`,
-    fetch(`https://foodi-server-lime.vercel.app/carts/${item._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-      body: JSON.stringify({ quantity: item.quantity + 1 }),
-    })
+    fetch(
+      `http://localhost:6001/carts/${item._id}`,
+      //fetch(`https://foodi-server-lime.vercel.app/carts/${item._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify({ quantity: item.quantity + 1 }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         const updatedCart = cartItems.map((cartItem) => {
@@ -46,14 +49,17 @@ const CartPage = () => {
   // handleDecrease function
   const handleDecrease = (item) => {
     if (item.quantity > 1) {
-      //fetch(`http://localhost:6001/carts/${item._id}`,
-      fetch(`https://foodi-server-lime.vercel.app/carts/${item._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-        body: JSON.stringify({ quantity: item.quantity - 1 }),
-      })
+      fetch(
+        `http://localhost:6001/carts/${item._id}`,
+        //fetch(`https://foodi-server-lime.vercel.app/carts/${item._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+          body: JSON.stringify({ quantity: item.quantity - 1 }),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           const updatedCart = cartItems.map((cartItem) => {
@@ -94,10 +100,13 @@ const CartPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        //fetch(`http://localhost:6001/carts/${item._id}`,
-        fetch(`https://foodi-server-lime.vercel.app/carts/${item._id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `http://localhost:6001/carts/${item._id}`,
+          //fetch(`https://foodi-server-lime.vercel.app/carts/${item._id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
