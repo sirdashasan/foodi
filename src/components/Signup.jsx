@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Modal from "./Modal";
 import { AuthContext } from "../contexts/AuthProvider";
+import axios from "axios";
 
 const Signup = () => {
   const {
@@ -12,7 +13,8 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
 
-  const { createUser, login } = useContext(AuthContext);
+  const { createUser, login, updateuserProfile, signUpWithGmail } =
+    useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,9 +27,21 @@ const Signup = () => {
       .then((result) => {
         // Signed up
         const user = result.user;
-        alert("Account creation successfully done!");
-        document.getElementById("my_modal_5").close();
-        navigate(from, { replace: true });
+        updateuserProfile(data.email, data.photoURL).then(() => {
+          const userInfor = {
+            name: data.name,
+            email: data.email,
+          };
+          axios
+            .post("http://localhost:6001/users", userInfor)
+            .then((response) => {
+              //console.log(response);
+              alert("Account creation successfully done!");
+              document.getElementById("my_modal_5").close();
+              navigate(from, { replace: true });
+            });
+        });
+
         // ...
       })
       .catch((error) => {
@@ -35,6 +49,27 @@ const Signup = () => {
         const errorMessage = error.message;
         // ..
       });
+  };
+
+  // login with google
+  const handleRegister = () => {
+    signUpWithGmail()
+      .then((result) => {
+        const user = result.user;
+        const userInfor = {
+          name: result?.user?.displayName,
+          email: result?.user?.email,
+        };
+        axios
+          .post("http://localhost:6001/users", userInfor)
+          .then((response) => {
+            //console.log(response);
+            alert("Account creation successfully done!");
+            document.getElementById("my_modal_5").close();
+            navigate("/");
+          });
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -122,7 +157,10 @@ const Signup = () => {
 
         {/* social sign in */}
         <div className="text-center space-x-3 mb-5">
-          <button className="btn btn-circle hover:bg-green hover:text-white">
+          <button
+            className="btn btn-circle hover:bg-green hover:text-white"
+            onClick={handleRegister}
+          >
             <FaGoogle />
           </button>
           <button className="btn btn-circle hover:bg-green hover:text-white">
