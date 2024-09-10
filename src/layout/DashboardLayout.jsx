@@ -42,7 +42,7 @@ const sharedLinks = (
 );
 
 const DashboardLayout = () => {
-  const isAdmin = false;
+  const isAdmin = true;
   return (
     <div>
       {isAdmin ? (
