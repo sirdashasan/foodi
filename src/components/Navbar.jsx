@@ -11,7 +11,7 @@ import useAuth from "../hooks/useAuth";
 const Navbar = () => {
   const [isSticky, setSticky] = useState(false);
 
-  const { user } = useAuth;
+  const { user } = useAuth();
   console.log(user);
   const [cart, refatch] = useCart();
   // console.log(cart);

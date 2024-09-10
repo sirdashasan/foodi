@@ -4,10 +4,13 @@ import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../contexts/AuthProvider";
 import axios from "axios";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
   const [errorMessage, seterrorMessage] = useState("");
-  const { signUpWithGmail, login } = useContext(AuthContext);
+  const { signUpWithGmail, login } = useAuth(); //useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,7 +36,7 @@ const Login = () => {
           name: data.name,
           email: data.email,
         };
-        axios.post("/users", userInfor).then((response) => {
+        axiosPublic.post("/users", userInfor).then((response) => {
           // console.log(response);
           alert("Signin successful!");
           navigate(from, { replace: true });
@@ -58,7 +61,7 @@ const Login = () => {
           name: result?.user?.displayName,
           email: result?.user?.email,
         };
-        axios.post("/users", userInfor).then((response) => {
+        axiosPublic.post("/users", userInfor).then((response) => {
           // console.log(response);
           alert("Signin successful!");
           navigate("/");

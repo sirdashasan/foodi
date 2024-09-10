@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import Modal from "./Modal";
 import { AuthContext } from "../contexts/AuthProvider";
 import axios from "axios";
+import useAuth from "../hooks/useAuth";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Signup = () => {
   const {
@@ -13,8 +15,8 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
 
-  const { createUser, login, updateuserProfile, signUpWithGmail } =
-    useContext(AuthContext);
+  const { createUser, login, updateuserProfile, signUpWithGmail } = useAuth(); //useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -32,14 +34,12 @@ const Signup = () => {
             name: data.name,
             email: data.email,
           };
-          axios
-            .post("http://localhost:6001/users", userInfor)
-            .then((response) => {
-              //console.log(response);
-              alert("Account creation successfully done!");
-              document.getElementById("my_modal_5").close();
-              navigate(from, { replace: true });
-            });
+          axiosPublic.post("/users", userInfor).then((response) => {
+            //console.log(response);
+            alert("Account creation successfully done!");
+            document.getElementById("my_modal_5").close();
+            navigate(from, { replace: true });
+          });
         });
 
         // ...
@@ -60,14 +60,12 @@ const Signup = () => {
           name: result?.user?.displayName,
           email: result?.user?.email,
         };
-        axios
-          .post("http://localhost:6001/users", userInfor)
-          .then((response) => {
-            //console.log(response);
-            alert("Account creation successfully done!");
-            document.getElementById("my_modal_5").close();
-            navigate("/");
-          });
+        axiosPublic.post("/users", userInfor).then((response) => {
+          //console.log(response);
+          alert("Account creation successfully done!");
+          document.getElementById("my_modal_5").close();
+          navigate("/");
+        });
       })
       .catch((error) => console.log(error));
   };
