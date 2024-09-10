@@ -14,6 +14,8 @@ import { FaCartShopping } from "react-icons/fa6";
 
 import logo from "/logo.png";
 import Login from "../components/Login";
+import useAdmin from "../hooks/useAdmin";
+import useAuth from "../hooks/useAuth";
 
 const sharedLinks = (
   <>
@@ -42,7 +44,8 @@ const sharedLinks = (
 );
 
 const DashboardLayout = () => {
-  const isAdmin = true;
+  const { loading } = useAuth();
+  const [isAdmin, isAdminLoading] = useAdmin();
   return (
     <div>
       {isAdmin ? (
