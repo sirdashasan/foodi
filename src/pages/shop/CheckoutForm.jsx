@@ -49,7 +49,7 @@ const CheckoutForm = ({ price, cart }) => {
       setCardError(error.message);
     } else {
       setCardError("success!");
-      console.log("[PaymentMethod]", paymentMethod);
+      // console.log("[PaymentMethod]", paymentMethod);
     }
 
     const { paymentIntent, error: confirmError } =
@@ -62,6 +62,27 @@ const CheckoutForm = ({ price, cart }) => {
           },
         },
       });
+    if (confirmError) {
+      console.log(confirmError);
+    }
+    console.log(paymentIntent);
+    if (paymentIntent.status === "succeeded") {
+      console.log(paymentIntent.id);
+      setCardError(`Your transactionId is ${paymentIntent.id}`);
+      //payment info data
+      const paymentInfo = {
+        email: user.email,
+        transactionId: paymentIntent.id,
+        price,
+        quantity: cart.length,
+        status: "order pending",
+        itemName: cart.map((item) => item.name),
+        cartItems: cart.map((item) => item._id),
+        menuItems: cart.map((item) => item.menuItemId),
+      };
+
+      console.log(paymentInfo);
+    }
   };
   return (
     <div className="flex flex-col sm:flex-row justify-start items-start gap-8">
