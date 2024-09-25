@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import { FaPaypal } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ price, cart }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
@@ -86,6 +88,7 @@ const CheckoutForm = ({ price, cart }) => {
       axiosSecure.post("/payments", paymentInfo).then((res) => {
         console.log(res.data);
         alert("Payment successfull!");
+        navigate("/order");
       });
     }
   };
