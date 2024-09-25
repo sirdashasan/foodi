@@ -1,12 +1,15 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 import { FaPaypal } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
 
 const CheckoutForm = ({ price, cart }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const { user } = useAuth();
 
   const [cardError, setCardError] = useState("");
+  const [clientSecret, setClientSecret] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,6 +38,17 @@ const CheckoutForm = ({ price, cart }) => {
       setCardError("success!");
       console.log("[PaymentMethod]", paymentMethod);
     }
+
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: user?.displayName || "anonymous",
+            email: user?.email || "unknown",
+          },
+        },
+      });
   };
   return (
     <div className="flex flex-col sm:flex-row justify-start items-start gap-8">
