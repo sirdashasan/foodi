@@ -82,6 +82,11 @@ const CheckoutForm = ({ price, cart }) => {
       };
 
       console.log(paymentInfo);
+      // send information to backend
+      axiosSecure.post("/payments", paymentInfo).then((res) => {
+        console.log(res.data);
+        alert("Payment successfull!");
+      });
     }
   };
   return (
