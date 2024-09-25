@@ -1,15 +1,28 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaPaypal } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const CheckoutForm = ({ price, cart }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+
+  useEffect(() => {
+    if (typeof price !== "number" || price < 1) {
+      console.log("Price is not a number or less than 1");
+      return;
+    }
+    axiosSecure.post("/create-payment-intent", { price }).then((res) => {
+      console.log(res.data.clientSecret);
+      setClientSecret(res.data.clientSecret);
+    });
+  }, [price, axiosSecure]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
