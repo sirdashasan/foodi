@@ -18,7 +18,7 @@ const CartPage = () => {
   // handleIncrease function
   const handleIncrease = (item) => {
     //console.log(item._id);
-    fetch(`https://foodi-server-7cn4.onrender.com//carts/${item._id}`, {
+    fetch(`https://foodi-server-7cn4.onrender.com/carts/${item._id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -47,7 +47,7 @@ const CartPage = () => {
   const handleDecrease = (item) => {
     if (item.quantity > 1) {
       fetch(
-        `https://foodi-server-7cn4.onrender.com//carts/${item._id}`,
+        `https://foodi-server-7cn4.onrender.com/carts/${item._id}`,
         //fetch(`https://foodi-server-lime.vercel.app/carts/${item._id}`,
         {
           method: "PUT",
@@ -97,7 +97,7 @@ const CartPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://foodi-server-7cn4.onrender.com//carts/${item._id}`, {
+        fetch(`https://foodi-server-7cn4.onrender.com/carts/${item._id}`, {
           method: "DELETE",
         })
           .then((res) => {

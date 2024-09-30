@@ -34,7 +34,7 @@ const Cards = ({ item }) => {
       };
 
       axios
-        .post("https://foodi-server-7cn4.onrender.com//carts", cartItem)
+        .post("https://foodi-server-7cn4.onrender.com/carts", cartItem)
         .then((response) => {
           console.log(response);
           if (response) {
