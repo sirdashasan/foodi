@@ -10,8 +10,7 @@ header {
 
 @media (prefers-color-scheme: dark) {
   .section-container {
-    @apply max-w-screen-2xl container mx-auto xl:px-24 px-4;
-    background-color: #ffffff !important;
+    background-color: #ffffff;
   }
 
   body {
@@ -25,9 +24,9 @@ header {
   }
 }
 
-/* .section-container {
+.section-container {
   @apply max-w-screen-2xl container mx-auto xl:px-24 px-4;
-} */
+}
 
 .subtitle {
   @apply text-red uppercase tracking-wide font-medium text-lg;
