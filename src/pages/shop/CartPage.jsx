@@ -170,24 +170,26 @@ const CartPage = () => {
                   </td>
                   <td className="font-medium">{item.name}</td>
                   <td>
-                    <button
-                      className="btn btn-xs"
-                      onClick={() => handleDecrease(item)}
-                    >
-                      -
-                    </button>
-                    <input
-                      type="number"
-                      value={item.quantity}
-                      onChange={() => console.log(item.quantity)}
-                      className="w-10 mx-2 text-center overflow-hidden appearance-none"
-                    />
-                    <button
-                      className="btn btn-xs"
-                      onClick={() => handleIncrease(item)}
-                    >
-                      +
-                    </button>
+                    <div className="flex items-center justify-start space-x-2">
+                      <button
+                        className="btn btn-xs"
+                        onClick={() => handleDecrease(item)}
+                      >
+                        -
+                      </button>
+                      <input
+                        type="number"
+                        value={item.quantity}
+                        onChange={() => console.log(item.quantity)}
+                        className="w-10 mx-2 text-center overflow-hidden appearance-none"
+                      />
+                      <button
+                        className="btn btn-xs"
+                        onClick={() => handleIncrease(item)}
+                      >
+                        +
+                      </button>
+                    </div>
                   </td>
                   <td>${calculatePrice(item).toFixed(2)}</td>
                   <th>
