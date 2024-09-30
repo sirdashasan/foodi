@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
+  const navigate = useNavigate();
+
+  const handleOrderNowClick = () => {
+    navigate("/menu"); // /menu sayfasına yönlendir
+  };
+
   return (
     <div className="section-container bg-gradient-to-r from-[#FAFAFA] from-0% to-[#FCFCFC] to-100%">
       <div className="py-24 flex flex-col md:flex-row-reverse justify-between items-center gap-8">
@@ -110,7 +117,10 @@ const Banner = () => {
             Where Each Plate Weaves a Story of Culinary Mastery and Passionate
             Craftsmanship
           </p>
-          <button className="btn bg-green px-8 py-3 font-semibold text-white rounded-full">
+          <button
+            className="btn bg-green px-8 py-3 font-semibold text-white rounded-full"
+            onClick={handleOrderNowClick}
+          >
             Order Now
           </button>
         </div>
