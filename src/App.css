@@ -36,3 +36,9 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+@media (prefers-color-scheme: dark) {
+  .section-container {
+    background-color: #ffffff;
+  }
+}
