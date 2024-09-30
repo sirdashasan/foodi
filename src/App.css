@@ -8,9 +8,19 @@ header {
   z-index: 10001 !important;
 }
 
-.section-container {
-  @apply max-w-screen-2xl container mx-auto xl:px-24 px-4;
+@media (prefers-color-scheme: dark) {
+  .section-container {
+    background-color: #ffffff !important;
+  }
+
+  body {
+    background-color: #ffffff !important;
+  }
 }
+
+/* .section-container {
+  @apply max-w-screen-2xl container mx-auto xl:px-24 px-4;
+} */
 
 .subtitle {
   @apply text-red uppercase tracking-wide font-medium text-lg;
@@ -35,10 +45,4 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-  .section-container {
-    background-color: #ffffff;
-  }
 }
