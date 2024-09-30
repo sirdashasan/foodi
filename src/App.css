@@ -16,6 +16,12 @@ header {
   body {
     background-color: #ffffff !important;
   }
+
+  button {
+    border-color: #39db4a !important;
+    background-color: #39db4a !important;
+    color: #ffffff !important;
+  }
 }
 
 /* .section-container {
