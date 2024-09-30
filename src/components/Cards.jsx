@@ -88,19 +88,18 @@ const Cards = ({ item }) => {
       >
         <FaHeart className="w-5 h-5 cursor-pointer" />
       </div>
-      <Link to={`/menu/${item._id}`}>
-        <figure>
-          <img
-            src={item.image}
-            alt="Shoes"
-            className="hover:scale-105 transition-all duration-300 md:h-72"
-          />
-        </figure>
-      </Link>
+
+      <figure>
+        <img
+          src={item.image}
+          alt="Shoes"
+          className="hover:scale-105 transition-all duration-300 md:h-72"
+        />
+      </figure>
+
       <div className="card-body">
-        <Link to={`/menu/${item._id}`}>
-          <h2 className="card-title">{item.name}!</h2>
-        </Link>
+        <h2 className="card-title">{item.name}!</h2>
+
         <p>Description of the item</p>
         <div className="card-actions justify-between items-center mt-2">
           <h5 className="font-semibold">
