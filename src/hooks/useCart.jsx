@@ -10,7 +10,7 @@ const useCart = () => {
     queryKey: ["carts", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `https://foodi-server-7cn4.onrender.com/carts?email=${user?.email}`,
+        `https://foodi-server-production.up.railway.app/carts?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${token}`,

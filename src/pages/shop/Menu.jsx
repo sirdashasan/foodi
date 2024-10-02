@@ -15,7 +15,7 @@ const Menu = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://foodi-server-7cn4.onrender.com/menu"
+          "https://foodi-server-production.up.railway.app/menu"
         );
         const data = await response.json();
         setMenu(data);
