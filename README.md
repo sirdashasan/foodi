@@ -37,7 +37,7 @@ This is the **frontend** of a full-featured restaurant website built with **Reac
 git clone https://github.com/sirdashasan/foodi.git
 
 # 2. Navigate to the project directory
-cd restaurant-frontend
+cd foodi-client
 
 # 3. Install dependencies
 npm install
